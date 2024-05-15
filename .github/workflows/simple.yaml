@@ -16,6 +16,9 @@ on:
   #   branches:
   #     - main
 
+# To make sure you can run this workflow in your forked repository, please go to:
+# Actions and click I understand my workflows...
+
 # For reference, this is how the full list of steps will look like:
 #
 #env:
