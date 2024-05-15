@@ -35,8 +35,6 @@ env:
     checkout_repository
     get_package_name
     build_r_package
-    run_r_cmd_check
-    upload_artifact
 
 jobs:
   hello-world:
