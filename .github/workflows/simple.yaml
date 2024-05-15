@@ -80,6 +80,7 @@ jobs:
         if: contains(env.ENABLED_STEPS, 'build_r_package')
         run: |
           R CMD build ${{ github.event.repository.name }}
+          ls -l
         shell: bash
 
       # TODO Decide if we use an image with these packages installed,
@@ -104,5 +105,5 @@ jobs:
         if: contains(env.ENABLED_STEPS, 'upload_artifact')
         uses: actions/upload-artifact@v4
         with:
-          path: ${{ github.event.repository.name }}/${{ env.PKGBUILD }}
+          path: ${{ env.PKGBUILD }}
           name: ${{ env.PKGBUILD }}
