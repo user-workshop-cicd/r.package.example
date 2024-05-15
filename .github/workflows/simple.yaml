@@ -20,6 +20,7 @@ on:
 # Actions and click I understand my workflows...
 
 # For reference, this is how the full list of steps will look like:
+# Remove just a single # character at the beginning of line to uncomment.
 #
 #env:
 #  ENABLED_STEPS: |
@@ -45,7 +46,7 @@ jobs:
 
     steps:
       - name: Checkout repo 🛎
-        # This means we're actually using a GitHub Action.
+        # This means we're actually using an official GitHub Action.
         uses: actions/checkout@v4.1.1
         if: contains(env.ENABLED_STEPS, 'checkout_repository')
         with:
@@ -54,8 +55,7 @@ jobs:
       - name: Get package name 📦
         if: contains(env.ENABLED_STEPS, 'get_package_name')
         run: |
-          PKGBUILD="$(echo $(awk -F: '/Package:/{gsub(/[ ]+/,"") ; print $2}' DESCRIPTION)_"\
-          "$(awk -F: '/Version:/{gsub(/[ ]+/,"") ; print $2}' DESCRIPTION).tar.gz)"
+          PKGBUILD="$(Rscript -e 'cat(sprintf("%s_%s.tar.gz",(dcf <- read.dcf("DESCRIPTION"))[,"Package"], dcf[,"Version"]))')"
           echo "PKGBUILD = $PKGBUILD"
           echo "PKGBUILD=$PKGBUILD" >> $GITHUB_ENV
         shell: bash
@@ -69,7 +69,8 @@ jobs:
 
       # TODO Decide if we use an image with these packages installed,
       # or we want to show how to install them (takes 2-3 minutes).
-      # Additionally, LaTeX is needed to create manual.
+      # Additionally, LaTeX is needed to create manual,
+      # so rocker/verse is working well for this purpose.
       # - name: Install packages
       #   run:
       #     install.packages(c("cli", "testthat"))
@@ -78,7 +79,7 @@ jobs:
       - name: Run R CMD check 🏁
         if: contains(env.ENABLED_STEPS, 'run_r_cmd_check')
         run: |
-          R CMD check  ${{ env.PKGBUILD }}
+          R CMD check ${{ env.PKGBUILD }}
         shell: bash
         env:
           _R_CHECK_TESTS_NLINES_: 0
