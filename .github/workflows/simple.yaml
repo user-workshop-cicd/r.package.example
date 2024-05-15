@@ -17,13 +17,13 @@ on:
       - main
 
 env:
-  ENABLED_STEPS: "checkout_repository,get_package_name,build_r_package"
+  ENABLED_STEPS: "checkout_repository,get_package_name,build_r_package,run_r_cmd_check"
 
 jobs:
   hello-world:
     runs-on: ubuntu-latest
     container:
-      image: rocker/verse:latest
+      image: rocker/r-ubuntu:latest
 
     steps:
       - name: Checkout repo 🛎
@@ -39,7 +39,7 @@ jobs:
         run: |
           PKGBUILD="$(echo $(awk -F: '/Package:/{gsub(/[ ]+/,"") ; print $2}' DESCRIPTION)_"\
           "$(awk -F: '/Version:/{gsub(/[ ]+/,"") ; print $2}' DESCRIPTION).tar.gz)"
-          echo "PKGBUILD=$PKGBUILD"
+          echo "PKGBUILD = $PKGBUILD"
           echo "PKGBUILD=$PKGBUILD" >> $GITHUB_ENV
         shell: bash
         working-directory: ${{ github.event.repository.name }}
