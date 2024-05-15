@@ -38,6 +38,7 @@ env:
     checkout_repository
     get_package_name
     build_r_package
+    upload_artifact
 
 jobs:
   hello-world-from-r:
