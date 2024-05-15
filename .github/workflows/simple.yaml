@@ -13,8 +13,8 @@ on:
   #     - synchronize
   #     - reopened
   #     - ready_for_review
-    branches:
-      - main
+  #   branches:
+  #     - main
 
 env:
   ENABLED_STEPS: "checkout_repository,get_package_name,build_r_package,run_r_cmd_check"
