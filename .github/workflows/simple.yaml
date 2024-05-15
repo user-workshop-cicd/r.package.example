@@ -42,6 +42,7 @@ env:
 
 jobs:
   hello-world-from-r:
+    name: Hello, world!
     runs-on: ubuntu-latest
     steps:
       - name: Setup R 🔧
@@ -54,6 +55,7 @@ jobs:
           NAME: "Your name"
 
   build-r-package:
+    name: Build R package
     runs-on: ubuntu-latest
     container:
       # image: rocker/r-ubuntu:latest
