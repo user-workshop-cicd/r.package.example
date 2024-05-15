@@ -1,0 +1,24 @@
+---
+name: Check 🛠
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      - setup-workflows
+  workflow_dispatch:
+
+
+# This reusable workflow from insightsengineering/r.pkg.template will run once a PR to main branch is created.
+jobs:
+  r-cmd:
+    name: R CMD Check 🧬
+    uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
