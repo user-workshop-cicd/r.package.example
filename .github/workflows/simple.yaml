@@ -7,12 +7,12 @@ on:
       - main
       # TODO update this
       - setup-workflows
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - ready_for_review
+  # pull_request:
+  #   types:
+  #     - opened
+  #     - synchronize
+  #     - reopened
+  #     - ready_for_review
     branches:
       - main
 
@@ -50,6 +50,11 @@ jobs:
         run: |
           R CMD build ${{ github.event.repository.name }}
         shell: bash
+
+      - name: Install packages
+        run:
+          install.packages(c("cli", "testthat"))
+        shell: Rscript {0}
 
       - name: Run R CMD check 🏁
         if: >
