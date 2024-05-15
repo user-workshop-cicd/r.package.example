@@ -35,6 +35,9 @@ env:
   ENABLED_STEPS: |
     None for now, when asked to, please add the steps from above, like this:
     step_name_from_above (four spaces before the step name are important!)
+    checkout_repository
+    get_package_name
+    build_r_package
 
 jobs:
   hello-world-from-r:
