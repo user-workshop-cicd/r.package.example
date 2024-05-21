@@ -19,26 +19,22 @@ on:
 # To make sure you can run this workflow in your forked repository, please go to:
 # Actions and click I understand my workflows...
 
-# For reference, this is how the full list of steps will look like:
-# Remove just a single # character at the beginning of line to uncomment.
-#
-#env:
-#  ENABLED_STEPS: |
-#    checkout_repository
-#    get_package_name
-#    build_r_package
-#    run_r_cmd_check
-#    upload_artifact
+# env:
+#   ENABLED_STEPS: |
+#     checkout_repository
+#     get_package_name
+#     build_r_package
+#     run_r_cmd_check
+#     upload_artifact
 
-# Please set this variable to include proper steps.
+# When asked to, please add the steps from the list above:
 env:
   ENABLED_STEPS: |
-    None for now, when asked to, please add the steps from above, like this:
-    step_name_from_above (four spaces before the step name are important!)
     checkout_repository
     get_package_name
-    build_r_package
-    upload_artifact
+    build_r_...
+    run_r_...
+    upload_...
 
 jobs:
   hello-world-from-r:
