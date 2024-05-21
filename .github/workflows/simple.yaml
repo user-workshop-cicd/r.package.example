@@ -18,6 +18,7 @@ on:
 
 # To make sure you can run this workflow in your forked repository, please go to:
 # Actions and click I understand my workflows...
+# Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
 
 # env:
 #   ENABLED_STEPS: |
