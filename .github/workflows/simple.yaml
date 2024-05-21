@@ -31,8 +31,9 @@ on:
 # When asked to, please add the steps from the list above:
 env:
   ENABLED_STEPS: |
-    checkout_repository
-    get_package_name
+    build_and_check
+    checkout_...
+    get_package_...
     build_r_...
     run_r_...
     upload_...
@@ -51,9 +52,10 @@ jobs:
         env:
           NAME: "Your name"
 
-  build-r-package:
+  build-and-check:
     name: Build R package
     runs-on: ubuntu-latest
+    if: contains(env.ENABLED_STEPS, 'build_and_check')
     container:
       # image: rocker/r-ubuntu:latest
       image: rocker/verse:4.4.0
