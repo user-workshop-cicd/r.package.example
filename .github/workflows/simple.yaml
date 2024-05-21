@@ -106,3 +106,7 @@ jobs:
         with:
           path: ${{ env.PKGBUILD }}
           name: ${{ env.PKGBUILD }}
+
+  call-reusable-workflow:
+    name: Reusable workflow ♻️
+    uses: user-workshop-cicd/r.pkg.template/.github/workflows/sample-reusable-workflow.yaml@example-reusable-workflow
