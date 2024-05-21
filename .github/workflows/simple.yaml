@@ -110,3 +110,5 @@ jobs:
   call-reusable-workflow:
     name: Reusable workflow ♻️
     uses: user-workshop-cicd/r.pkg.template/.github/workflows/sample-reusable-workflow.yaml@sample-reusable-workflow
+    with:
+      name: Octocat
