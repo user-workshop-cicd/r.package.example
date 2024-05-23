@@ -2,23 +2,22 @@
 name: Simple workflow
 
 on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    branches:
+      - main
   push:
     branches:
       - main
-      # TODO update this
-      - setup-workflows
-  # pull_request:
-  #   types:
-  #     - opened
-  #     - synchronize
-  #     - reopened
-  #     - ready_for_review
-  #   branches:
-  #     - main
 
 # Prerequisites to run workflows:
 # Actions -> I understand my workflows...
 # Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
+# Create a PR from your own branch to main.
 
 env:
   ENABLED_STEPS: |
@@ -42,6 +41,7 @@ env:
 #     upload_...
 
 jobs:
+  # First job.
   hello-world-from-r:
     name: Hello, world!
     runs-on: ubuntu-latest
@@ -55,6 +55,8 @@ jobs:
         env:
           NAME: "Your name"
 
+  # Second job - by default jobs will run in parallel, unless some dependencies
+  # are introduced between them.
   build-and-check:
     name: Build R package
     runs-on: ubuntu-latest
@@ -71,9 +73,11 @@ jobs:
 
       - name: Setup R 🔧
         if: contains(env.ENABLED_STEPS, 'setup_r')
+        # We're using a third-party GitHub Action.
         uses: r-lib/actions/setup-r@v2
 
       - name: Setup R dependencies 🔧
+        # We're using a third-party GitHub Action.
         uses: r-lib/actions/setup-r-dependencies@v2
         if: contains(env.ENABLED_STEPS, 'setup_dependencies')
         with:
@@ -94,6 +98,7 @@ jobs:
         working-directory: ${{ github.event.repository.name }}
 
       # Build a package stored in a directory called ${{ github.event.repository.name }}
+      # --no-manual --no-build-vignettes because this requires LaTeX.
       - name: Build R package 🏗
         if: contains(env.ENABLED_STEPS, 'build_r_package')
         run: |
@@ -102,6 +107,7 @@ jobs:
         shell: bash
 
       # Check tar.gz package built in previous step.
+      # --no-manual --no-vignettes because this requires LaTeX.
       - name: Run R CMD check 🏁
         if: contains(env.ENABLED_STEPS, 'run_r_cmd_check')
         run: |

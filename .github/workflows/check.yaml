@@ -2,20 +2,22 @@
 name: Check 🛠
 
 on:
-  # pull_request:
-  #   types:
-  #     - opened
-  #     - synchronize
-  #     - reopened
-  #     - ready_for_review
-  #   branches:
-  #     - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    branches:
+      - main
   push:
     branches:
       - main
-      - setup-workflows
-  workflow_dispatch:
 
+# Prerequisites to run workflows:
+# Actions -> I understand my workflows...
+# Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
+# Create a PR from your own branch to main.
 
 # This reusable workflow from insightsengineering/r.pkg.template will run once a PR to main branch is created.
 jobs:
