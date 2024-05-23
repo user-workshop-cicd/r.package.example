@@ -82,6 +82,8 @@ jobs:
 
       # Get package name and version from DESCRIPTION so that we'll know
       # what's the name of the tar.gz file with the built package.
+      # PKGBUILD environment variable is saved as an environment variable so this
+      # information can be accessed by subsequent steps.
       - name: Get package name 📦
         if: contains(env.ENABLED_STEPS, 'get_package_name')
         run: |
@@ -95,7 +97,7 @@ jobs:
       - name: Build R package 🏗
         if: contains(env.ENABLED_STEPS, 'build_r_package')
         run: |
-          R CMD build ${{ github.event.repository.name }}
+          R CMD build --no-manual --no-build-vignettes ${{ github.event.repository.name }}
           ls -l
         shell: bash
 
@@ -103,7 +105,7 @@ jobs:
       - name: Run R CMD check 🏁
         if: contains(env.ENABLED_STEPS, 'run_r_cmd_check')
         run: |
-          R CMD check ${{ env.PKGBUILD }}
+          R CMD check --no-manual --no-vignettes ${{ env.PKGBUILD }}
         shell: bash
         env:
           _R_CHECK_TESTS_NLINES_: 0
