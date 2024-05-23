@@ -119,7 +119,9 @@ jobs:
           _R_CHECK_VIGNETTES_NLINES_: 0
 
       - name: Get tar.gz file name
+        if: contains(env.ENABLED_STEPS, 'upload_artifact')
         id: tar-gz
+        # Use our custom action.
         uses: user-workshop-cicd/action-example@setup-action
         with:
           filename-beginning: ${{ github.event.repository.name }}
@@ -129,6 +131,8 @@ jobs:
         if: contains(env.ENABLED_STEPS, 'upload_artifact')
         uses: actions/upload-artifact@v4
         with:
+          # Output of the custom action from the previous step
+          # are inputs of this action.
           path: ${{ steps.tar-gz.outputs.full-filename }}
           name: ${{ steps.tar-gz.outputs.full-filename }}
 
