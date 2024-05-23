@@ -19,42 +19,41 @@ on:
 # Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
 # Create a PR from your own branch to main.
 
-env:
-  ENABLED_STEPS: |
-    checkout_repository
-    setup_r
-    setup_dependencies
-    get_package_name
-    build_r_package
-    run_r_cmd_check
-    upload_artifact
-
-# When asked to, please add the steps from the list above:
 # env:
 #   ENABLED_STEPS: |
-#     checkout_...
-#     setup_...
-#     setup_...
-#     get_package_...
-#     build_r_...
-#     run_r_...
-#     upload_...
+#     checkout_repository
+#     setup_r
+#     setup_dependencies
+#     get_package_name
+#     build_r_package
+#     run_r_cmd_check
+#     upload_artifact
+
+# When asked to, please add the steps from the list above:
+env:
+  ENABLED_STEPS: |
+    checkout_...
+    setup_...
+    setup_...
+    get_package_...
+    build_r_...
+    run_r_...
+    upload_...
 
 jobs:
   # First job.
-  # TODO uncomment
-  # hello-world-from-r:
-  #   name: Hello, world!
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Setup R 🔧
-  #       uses: r-lib/actions/setup-r@v2
+  hello-world-from-r:
+    name: Hello, world!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup R 🔧
+        uses: r-lib/actions/setup-r@v2
 
-  #     - name: Hello world! 💬
-  #       run: cat(paste0("Hello ", Sys.getenv("NAME"), "! 👋"))
-  #       shell: Rscript {0}
-  #       env:
-  #         NAME: "Your name"
+      - name: Hello world! 💬
+        run: cat(paste0("Hello ", Sys.getenv("NAME"), "! 👋"))
+        shell: Rscript {0}
+        env:
+          NAME: "Your name"
 
   # Second job - by default jobs will run in parallel, unless some dependencies
   # are introduced between them.
