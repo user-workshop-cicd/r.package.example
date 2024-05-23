@@ -78,7 +78,7 @@ jobs:
         if: contains(env.ENABLED_STEPS, 'setup_dependencies')
         with:
           extra-packages: any::rcmdcheck
-        working-directory: ${{ github.event.repository.name }}
+          working-directory: ${{ github.event.repository.name }}
 
       # Get package name and version from DESCRIPTION so that we'll know
       # what's the name of the tar.gz file with the built package.
