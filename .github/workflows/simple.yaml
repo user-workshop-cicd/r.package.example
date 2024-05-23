@@ -54,13 +54,9 @@ jobs:
   build-and-check:
     name: Build R package
     runs-on: ubuntu-latest
-    container:
-      # image: rocker/r-ubuntu:latest
-      image: rocker/verse:4.4.0
-
     steps:
       - name: Checkout repo 🛎
-        # This means we're actually using an official GitHub Action.
+        # We're using an official GitHub Action.
         uses: actions/checkout@v4.1.1
         if: contains(env.ENABLED_STEPS, 'checkout_repository')
         with:
@@ -81,15 +77,6 @@ jobs:
           R CMD build ${{ github.event.repository.name }}
           ls -l
         shell: bash
-
-      # TODO Decide if we use an image with these packages installed,
-      # or we want to show how to install them (takes 2-3 minutes).
-      # Additionally, LaTeX is needed to create manual,
-      # so rocker/verse is working well for this purpose.
-      # - name: Install packages
-      #   run:
-      #     install.packages(c("cli", "testthat"))
-      #   shell: Rscript {0}
 
       - name: Run R CMD check 🏁
         if: contains(env.ENABLED_STEPS, 'run_r_cmd_check')
