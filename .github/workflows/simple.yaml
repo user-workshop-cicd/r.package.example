@@ -14,11 +14,7 @@ on:
     branches:
       - main
 
-# Prerequisites to run workflows:
-# Actions -> I understand my workflows...
-# Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
-# Create a PR from your own branch to main.
-
+# For reference, this is how the final list of steps will look like:
 # env:
 #   ENABLED_STEPS: |
 #     checkout_repository
