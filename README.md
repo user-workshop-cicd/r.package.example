@@ -2,9 +2,11 @@
 
 An example package for the workshop.
 
-## Install `git` and SSH client
+## Prepare your local environment for the workshop excercises
 
-### Windows
+### Install `git` and SSH client
+
+#### Windows
 On Windows you can install `git` together with SSH client from https://git-scm.com/download/win.
 
 Below you can find suggested installation customizations, but feel free to customize according to your preferences.
@@ -22,13 +24,13 @@ Below you can find suggested installation customizations, but feel free to custo
 1. Enable file system caching (default).
 1. No experimental options.
 
-### Ubuntu or Docker container
+#### Ubuntu or Docker container
 On Ubuntu, you can install them like this. If you know how to use Docker, you can run these commands in `ubuntu` image.
 ```bash
 apt-get update && apt-get install -yq openssh-client git
 ```
 
-## Setup write access to GitHub
+### Setup write access to GitHub
 
 Create an SSH key pair.
 ```bash
@@ -46,11 +48,13 @@ Copy this and paste to https://github.com/settings/ssh/new.
 
 Add any title, and leave key type equal to authentication key.
 
-## Cloning the sample repository
+### Clone the sample repository
 
 Clone the `r.package.example` repository. Replace `<url>` with an URL similar to this one: `git@github.com:user-workshop-cicd/r.package.example.git`, but `user-workshop-cicd` should be replaced with your GitHub username.
 
 ```bash
+mkdir user-workshop
+cd user-workshop
 git clone <url>
 cd r.package.example
 git status
@@ -65,6 +69,8 @@ nothing to commit, working tree clean
 ```
 
 Configure your name and email address - this will be required to push commits.
+
+You may consider using obfuscated e-mail address like `<github-username>@example.com`, and `<github-username>` as `Your Name`.
 ```
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
