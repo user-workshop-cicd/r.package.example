@@ -13,6 +13,7 @@ on:
   push:
     branches:
       - main
+      - setup-workflows
 
 # For reference, this is how the final list of steps will look like:
 # env:
@@ -25,8 +26,11 @@ on:
 #     run_r_cmd_check
 #     upload_artifact
 
-# When asked to, please add the steps from the list above:
 env:
+  _R_CHECK_TESTS_NLINES_: 0
+  _R_CHECK_VIGNETTES_NLINES_: 0
+  EXTRA_CHECK_FLAGS: "--no-manual --no-vignettes"
+  # When asked to, please add the steps from the list above:
   ENABLED_STEPS: |
     checkout_...
     setup_...
@@ -82,14 +86,14 @@ jobs:
 
       # Get package name and version from DESCRIPTION so that we'll know
       # what's the name of the tar.gz file with the built package.
-      # PKGBUILD environment variable is saved as an environment variable so this
-      # information can be accessed by subsequent steps.
+      # pkgbuild is set as an output which can be accessed by subsequent steps.
       - name: Get package name 📦
         if: contains(env.ENABLED_STEPS, 'get_package_name')
+        id: package-name
         run: |
           PKGBUILD="$(Rscript -e 'cat(sprintf("%s_%s.tar.gz",(dcf <- read.dcf("DESCRIPTION"))[,"Package"], dcf[,"Version"]))')"
           echo "PKGBUILD = $PKGBUILD"
-          echo "PKGBUILD=$PKGBUILD" >> $GITHUB_ENV
+          echo "pkgbuild=$PKGBUILD" >> $GITHUB_OUTPUT
         shell: bash
         working-directory: ${{ github.event.repository.name }}
 
@@ -107,11 +111,11 @@ jobs:
       - name: Run R CMD check 🏁
         if: contains(env.ENABLED_STEPS, 'run_r_cmd_check')
         run: |
-          R CMD check --no-manual --no-vignettes ${{ env.PKGBUILD }}
+          echo "_R_CHECK_TESTS_NLINES_ = $_R_CHECK_TESTS_NLINES_"
+          echo "_R_CHECK_VIGNETTES_NLINES_ = $_R_CHECK_VIGNETTES_NLINES_"
+          echo "Let's run R CMD check..."
+          R CMD check ${EXTRA_CHECK_FLAGS} ${{ steps.package-name.outputs.pkgbuild }}
         shell: bash
-        env:
-          _R_CHECK_TESTS_NLINES_: 0
-          _R_CHECK_VIGNETTES_NLINES_: 0
 
       - name: Get tar.gz file name
         if: contains(env.ENABLED_STEPS, 'upload_artifact')
