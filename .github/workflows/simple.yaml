@@ -73,7 +73,6 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         if: contains(env.ENABLED_STEPS, 'setup_dependencies')
         with:
-          extra-packages: any::rcmdcheck
           working-directory: ${{ github.event.repository.name }}
 
       # Get package name and version from DESCRIPTION so that we'll know
