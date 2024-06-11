@@ -25,12 +25,12 @@ env:
   # When asked to, please add the steps from the list above:
   ENABLED_STEPS: |
     checkout_repository
-    setup_r
-    setup_dependencies
-    get_package_name
-    build_r_package
-    run_r_cmd_check
-    upload_artifact
+#    setup_r
+#    setup_dependencies
+#    get_package_name
+#    build_r_package
+#    run_r_cmd_check
+#    upload_artifact
 
 jobs:
   # First job.
