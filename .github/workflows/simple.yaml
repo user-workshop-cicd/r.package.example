@@ -100,8 +100,7 @@ jobs:
       - name: Run R CMD check 🏁
         if: contains(env.ENABLED_STEPS, 'run_r_cmd_check')
         run: |
-          echo "_R_CHECK_TESTS_NLINES_ = $_R_CHECK_TESTS_NLINES_"
-          echo "_R_CHECK_VIGNETTES_NLINES_ = $_R_CHECK_VIGNETTES_NLINES_"
+          env | grep -E '^_R'
           echo "Let's run R CMD check..."
           R CMD check ${EXTRA_CHECK_FLAGS} ${{ steps.package-name.outputs.pkgbuild }}
         shell: bash
