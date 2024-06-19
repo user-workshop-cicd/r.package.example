@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="hello" timestamp="2024-06-19T17:11:51Z" hostname="2a5909762e6f" tests="3" skipped="0" failures="1" errors="0" time="0.356">
+  <testsuite name="hello" timestamp="2024-06-19T17:20:58Z" hostname="660c7ca32311" tests="3" skipped="0" failures="0" errors="0" time="0.21">
     <testcase time="0.012" classname="hello" name="hello_works"/>
-    <testcase time="0.191" classname="hello" name="hello_cli_works"/>
-    <testcase time="0.153" classname="hello" name="fix_me_">
-      <failure type="failure" message="1 (`actual`) not equal to 2 (`expected`). ('test-hello.R:10:3')">1 (`actual`) not equal to 2 (`expected`).
-
-  `actual`: 1
-`expected`: 2</failure>
-    </testcase>
+    <testcase time="0.186" classname="hello" name="hello_cli_works"/>
+    <testcase time="0.012" classname="hello" name="fix_me_"/>
   </testsuite>
 </testsuites>
