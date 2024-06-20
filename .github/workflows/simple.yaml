@@ -13,6 +13,7 @@ on:
   push:
     branches:
       - main
+      - walkowif-test
 
 env:
   # additional flags for `R CMD CHECK`
@@ -100,6 +101,31 @@ jobs:
           echo "Let's run R CMD check..."
           R CMD check ${EXTRA_CHECK_FLAGS} ${{ steps.package-name.outputs.pkgbuild }}
         shell: bash
+
+      - name: Show R CMD check logs 🔎
+        if: always()
+        run: |
+          find ${{ github.event.repository.name }}.Rcheck -type f -regextype posix-egrep \
+            -regex '.*00install.out|.*00check.log|.*00build.out|.*-Ex.Rout|.*tests/testthat\.Rout.*' \
+            -print0 | while IFS= read -r -d $'\0' file; do
+              echo "::group::$file"
+              cat $file
+              echo "::endgroup::"
+          done
+        shell: bash
+
+      - name: Upload logs artifact 🗞️
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          path: |
+            ${{ github.event.repository.name }}.Rcheck/*00install.out
+            ${{ github.event.repository.name }}.Rcheck/*00check.log
+            ${{ github.event.repository.name }}.Rcheck/*00build.out
+            ${{ github.event.repository.name }}.Rcheck/*-Ex.Rout
+            ${{ github.event.repository.name }}.Rcheck/tests/testthat.Rout
+            ${{ github.event.repository.name }}.Rcheck/tests/testthat.Rout.fail
+          name: check-logs-${{ github.event.repository.name }}
 
       - name: Get `.tar.gz` file name
         if: false
