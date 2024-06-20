@@ -103,7 +103,7 @@ jobs:
 
       - name: Upload logs artifact 🗞️
         uses: actions/upload-artifact@v4
-        if: always()
+        if: false
         with:
           path: |
             ${{ github.event.repository.name }}.Rcheck/*00install.out
