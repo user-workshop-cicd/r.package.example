@@ -13,7 +13,6 @@ on:
   push:
     branches:
       - main
-      - walkowif-test
 
 # This reusable workflow from insightsengineering/r.pkg.template will run once a PR to main branch is created.
 jobs:
