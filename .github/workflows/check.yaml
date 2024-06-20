@@ -22,6 +22,7 @@ jobs:
     outputs:
       check_out: ${{ steps.check.outputs.run_r_cmd_check }}
     steps:
+      # We can have much more advanced logic to decide which jobs we want to run.
       - name: To check or not to check?
         id: check
         run: |
@@ -34,3 +35,7 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
     if: >
       needs.job-setup.outputs.check_out == 'true'
+
+  style:
+    name: Style Check
+    uses: insightsengineering/r.pkg.template/.github/workflows/style.yaml@main
