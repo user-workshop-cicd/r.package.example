@@ -102,18 +102,6 @@ jobs:
           R CMD check ${EXTRA_CHECK_FLAGS} ${{ steps.package-name.outputs.pkgbuild }}
         shell: bash
 
-      - name: Show R CMD check logs 🔎
-        if: always()
-        run: |
-          find ${{ github.event.repository.name }}.Rcheck -type f -regextype posix-egrep \
-            -regex '.*00install.out|.*00check.log|.*00build.out|.*-Ex.Rout|.*tests/testthat\.Rout.*' \
-            -print0 | while IFS= read -r -d $'\0' file; do
-              echo "::group::$file"
-              cat $file
-              echo "::endgroup::"
-          done
-        shell: bash
-
       - name: Upload logs artifact 🗞️
         uses: actions/upload-artifact@v4
         if: always()
