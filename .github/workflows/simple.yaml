@@ -63,7 +63,6 @@ jobs:
       - name: Setup R dependencies 🔧
         # We're using a third-party GitHub Action.
         uses: r-lib/actions/setup-r-dependencies@v2
-        if: false
         with:
           working-directory: ${{ github.event.repository.name }}
 
@@ -102,7 +101,6 @@ jobs:
 
       - name: Upload logs artifact 🗞️
         uses: actions/upload-artifact@v4
-        if: false
         with:
           path: |
             ${{ github.event.repository.name }}.Rcheck/*00install.out
