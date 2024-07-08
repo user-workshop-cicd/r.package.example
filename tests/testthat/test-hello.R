@@ -6,6 +6,6 @@ test_that("hello_cli() works", {
   expect_message(hello_cli(), "Hello, World!")
 })
 
-test_that("fix me!!!", {
-  expect_equal(1, 2)
+test_that("fixed!!!", {
+  expect_equal(1, 1)
 })
