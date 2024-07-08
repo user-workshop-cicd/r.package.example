@@ -64,7 +64,7 @@ jobs:
       - name: Setup R dependencies 🔧
         # We're using a third-party GitHub Action.
         uses: r-lib/actions/setup-r-dependencies@v2
-        if: false
+        if: true
         with:
           working-directory: ${{ github.event.repository.name }}
 
