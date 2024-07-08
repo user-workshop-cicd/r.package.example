@@ -120,7 +120,6 @@ jobs:
 
       # Upload `.tar.gz` package as an artifact so it can be downloaded.
       - name: Upload package build ⤴
-        if: false
         uses: actions/upload-artifact@v4
         with:
           # Output of the custom action from the previous step
