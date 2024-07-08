@@ -3,5 +3,4 @@
 
 An example package for the workshop.
 
-
-Magdas edits
+:::
