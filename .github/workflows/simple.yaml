@@ -35,7 +35,7 @@ jobs:
         run: cat(paste0("Hello ", Sys.getenv("NAME"), "! 👋"))
         shell: Rscript {0}
         env:
-          NAME: "Your name"
+          NAME: "Floris"
 
   # Second job - by default jobs will run in parallel, unless some dependencies
   # are introduced between them.
