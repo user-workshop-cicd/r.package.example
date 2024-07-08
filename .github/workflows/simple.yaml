@@ -103,7 +103,7 @@ jobs:
 
       - name: Upload logs artifact 🗞️
         uses: actions/upload-artifact@v4
-        if: false
+        if: true
         with:
           path: |
             ${{ github.event.repository.name }}.Rcheck/*00install.out
@@ -115,7 +115,7 @@ jobs:
           name: check-logs-${{ github.event.repository.name }}
 
       - name: Get `.tar.gz` file name
-        if: false
+        if: true
         id: tar-gz
         # Use our custom action.
         uses: user-workshop-cicd/action-example@main
@@ -124,7 +124,7 @@ jobs:
 
       # Upload `.tar.gz` package as an artifact so it can be downloaded.
       - name: Upload package build ⤴
-        if: false
+        if: true
         uses: actions/upload-artifact@v4
         with:
           # Output of the custom action from the previous step
