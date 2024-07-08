@@ -9,7 +9,7 @@
 #' @examples
 #' hello()
 hello <- function() {
-  print("Hellow, World!")
+  print("Hello, World!")
 }
 
 #' Print "Hello, World!" using the `cli` package
