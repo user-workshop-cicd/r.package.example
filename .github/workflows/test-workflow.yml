@@ -1,14 +1,14 @@
 name: Testing workflow
 
 on:
-  # pull_request:
-  #   types:
-  #     - opened
-  #     - synchronize
-  #     - reopened
-  #     - ready_for_review
-  #   branches:
-  #     - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    branches:
+      - main
   push:
     branches:
       - main
